@@ -1,16 +1,25 @@
 body{
 
 
-background: black;
+margin-left:10%;
+margin-right:10%;
+margin-bottom:10%;
+}
+
+
+.jumbotron{
+
+text-align: center;
+
+
+background: chocolate;
+color: white;
+font: bolder;
+
+
+
+
 
 }
 
 
-p{
-
-
-font: 900;
-color: yellow;
-
-
-}
