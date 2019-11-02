@@ -1,14 +1,6 @@
-const tBody = $("<tbody>");
-const tRow = $("<tr>");
-const tHeader = $("<th>");
-const tData = $("<td>");
-
 let table = $(".table");
 
-
-
-
-
+let currentTime = moment().format("HH:mm");
 
 let nameInput;
 let destination;
@@ -35,8 +27,19 @@ $("#submitButton").on("click", function (event) {
     trainTime = $("#Train-Time").val().trim();
     frequency = $("#Frequency").val().trim();
 
-    let convertedTime = moment(trainTime, "HH:mm");
-    let minutesAway = convertedTime.add(frequency, 'minutes').format('HH:mm');
+
+    currentTime = moment().format("HH:mm");
+    let convertedTime = moment(trainTime, "HH:mm").subtract(1, "years");
+
+    let timeDiff = moment().diff(moment(convertedTime), "minutes");
+
+
+
+    let tRemainder = timeDiff % frequency;
+
+    let minutesAway = frequency - tRemainder;
+
+    let nextArrival = moment().add(minutesAway, "minutes").format("hh:mm");
 
 
 
@@ -45,7 +48,7 @@ $("#submitButton").on("click", function (event) {
         $("<th>").text(nameInput),
         $("<td>").text(destination),
         $("<td>").text(frequency),
-        $("<td>").text(trainTime),
+        $("<td>").text(nextArrival),
         $("<td>").text(minutesAway));
 
 
